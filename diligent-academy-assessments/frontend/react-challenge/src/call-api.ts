@@ -2,6 +2,11 @@
  * Calls API with a specific route and a promise of the required resource.
  * @param route - eg. "heroes"
 */
+/*
+export const callApi = async <T>(route: string): Promise<T> => {
+  throw new Error("API failure");
+}; */
+
 export const callApi = async <T>(route: string): Promise<T> => {
   switch (route) {
     case "heroes":
@@ -9,7 +14,7 @@ export const callApi = async <T>(route: string): Promise<T> => {
     default:
       throw new Error("Invalid route");
   }
-};
+}; 
 
 const fetchHeroes = async <T>(): Promise<T> => {
   const heroes = [

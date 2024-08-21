@@ -5,8 +5,8 @@
 /*
 export const callApi = async <T>(route: string): Promise<T> => {
   throw new Error("API failure");
-}; */
-
+}; 
+*/
 export const callApi = async <T>(route: string): Promise<T> => {
   switch (route) {
     case "heroes":

@@ -1,26 +1,26 @@
 import { useState, useEffect } from "react";
 import { callApi } from "../call-api";
+import useFetch from "../hooks/useFetch";
 import Hero from "../types/Hero";
 import HeroesListItem from "./heroes-list-item";
+import "../styles/HeroesList.css"
 
 function HeroesList() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [isFetched, setIsFetched] = useState<boolean>(false)
+
+  const { data: fetchedHeroes, loading, error } = useFetch<Hero[]>(() => callApi<Hero[]>("heroes"));
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await callApi<Hero[]>("heroes");
-        setHeroes(data);
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to fetch heroes.");
-        setLoading(false);
+
+    if (!isFetched){
+
+      if (fetchedHeroes) {
+        setHeroes(fetchedHeroes);
+        setIsFetched(true);
       }
-    };
-    fetchData();
-  }, []);
+    }
+  }, [fetchedHeroes, isFetched]);
 
 
   const toggleAvailability = (id: number) => {
@@ -32,26 +32,28 @@ function HeroesList() {
   };
 
   if (error) {
-    return <h2>{error}</h2>;
+    return <h2 style={{textAlign: "center"}}>{error}</h2>;
   }
 
   if (loading) {
-    return <h2>Loading</h2>
+    return <h2 style={{textAlign: "center"}}>Loading</h2>
   }
 
   return (
-    <>
+    <div className="heroes-container">
       <h2>Heroes</h2>
-      <ul>
+      <ul className="heroes-grid">
         {heroes.map((hero) => (
           <HeroesListItem
             key={hero.id}
-            id={hero.id} name={hero.name}
+            id={hero.id}
+            name={hero.name}
             available={hero.available}
-            toggleAvailability={toggleAvailability} />
+            toggleAvailability={toggleAvailability}
+          />
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 

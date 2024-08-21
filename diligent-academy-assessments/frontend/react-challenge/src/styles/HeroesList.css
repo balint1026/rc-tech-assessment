@@ -1,0 +1,40 @@
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .heroes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .heroes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 0;
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .hero-item {
+    list-style: none;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+    .available {
+    color: green;
+  }
+  
+  .unavailable {
+    color: red;
+  }
+  
+  

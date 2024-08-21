@@ -1,10 +1,11 @@
 import HeroesList from "./components/heroes-list";
+import "./styles/HeroesList.css"
 
 function App() {
 
   return (
     <div>
-      <h1>App</h1>
+      <h1 style={{textAlign: "center"}}>App</h1>
       <HeroesList />
     </div>
   );

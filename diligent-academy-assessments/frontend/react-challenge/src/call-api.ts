@@ -2,6 +2,9 @@
  * Calls API with a specific route and a promise of the required resource.
  * @param route - eg. "heroes"
 */
+
+
+//uncomment this function and comment the "callApi" function below to test API error handling
 /*
 export const callApi = async <T>(route: string): Promise<T> => {
   throw new Error("API failure");

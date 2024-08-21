@@ -14,7 +14,6 @@ function HeroesList() {
   useEffect(() => {
 
     if (!isFetched){
-
       if (fetchedHeroes) {
         setHeroes(fetchedHeroes);
         setIsFetched(true);
